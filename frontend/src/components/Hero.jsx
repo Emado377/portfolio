@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const API = 'http://localhost:5000';
+const API = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
 export default function Hero() {
   const [profile, setProfile] = useState({});
@@ -15,13 +15,13 @@ export default function Hero() {
   return (
     <section id="hero" className="hero">
       {profile.photo_url && (
-  <img
-    src={profile.photo_url}
-    alt={profile.name || 'Profile'}
-    className="hero-photo"
-    onError={(e) => { e.target.style.display = 'none'; }}
-  />
-)}
+        <img
+          src={profile.photo_url}
+          alt={profile.name || 'Profile'}
+          className="hero-photo"
+          onError={(e) => { e.target.style.display = 'none'; }}
+        />
+      )}
 
       <h1>Hi, I'm <span className="accent">{profile.name || 'a developer'}</span></h1>
       <p className="tagline">{profile.bio}</p>
